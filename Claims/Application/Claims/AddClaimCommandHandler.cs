@@ -1,14 +1,13 @@
 ﻿using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Auditing;
-using Claims.Infrastructure;
 using Claims.Model;
 using JetBrains.Annotations;
 
 namespace Claims.Application.Claims;
 
 [UsedImplicitly]
-public class AddClaimCommandHandler(IClaimsService claimsService, Auditer auditer)
+public class AddClaimCommandHandler(IClaimsService claimsService, IAuditer auditer)
     : ICommandHandler<AddClaimCommand, AddClaimCommandResult>
 {
     public async Task<AddClaimCommandResult> Handle(AddClaimCommand command,
@@ -25,7 +24,7 @@ public class AddClaimCommandHandler(IClaimsService claimsService, Auditer audite
             Created = DateTime.UtcNow
         };
         await claimsService.AddClaimAsync(claim, cancellationToken);
-        auditer.AuditClaim(claimId, "POST");
+        await auditer.Audit(AuditTypes.Claim, claimId, AuditHttpRequestType.POST);
         return new AddClaimCommandResult(claim);
     }
 }

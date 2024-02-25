@@ -7,6 +7,7 @@ using Claims.Application.Shared;
 using Claims.Auditing;
 using Claims.Controllers;
 using Claims.Infrastructure;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -25,8 +26,9 @@ builder.Services.AddSingleton(
 builder.Services.AddDbContext<AuditContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<Auditer>();
+builder.Services.AddScoped<IAuditer, Auditer>();
 RegisterHandlers(builder.Services);
+RegisterMasstransit(builder.Services);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,6 +57,19 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 return;
+
+void RegisterMasstransit(IServiceCollection services)
+{
+    services.AddMassTransit(x =>
+    {
+        x.AddConsumer<AuditConsumer>();
+        x.UsingInMemory((context, cfg) =>
+        {
+            cfg.ConcurrentMessageLimit = 100;
+            cfg.ConfigureEndpoints(context);
+        });
+    });
+}
 
 void RegisterHandlers(IServiceCollection services)
 {

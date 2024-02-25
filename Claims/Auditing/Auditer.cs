@@ -1,38 +1,22 @@
-﻿namespace Claims.Auditing
+﻿using MassTransit;
+
+namespace Claims.Auditing;
+
+public class Auditer(AuditContext auditContext, IPublishEndpoint massTransitPublish) : IAuditer
 {
-    public class Auditer
+    public Task Audit(AuditTypes type, Guid id, AuditHttpRequestType requestType) =>
+        massTransitPublish.Publish(new AuditMessage(type, id, requestType));
+
+    public void AuditCover(Guid id, string httpRequestType)
     {
-        private readonly AuditContext _auditContext;
-
-        public Auditer(AuditContext auditContext)
+        var coverAudit = new CoverAudit
         {
-            _auditContext = auditContext;
-        }
+            Created = DateTime.Now,
+            HttpRequestType = httpRequestType,
+            CoverId = id.ToString("D")
+        };
 
-        public void AuditClaim(Guid id, string httpRequestType)
-        {
-            var claimAudit = new ClaimAudit()
-            {
-                Created = DateTime.Now,
-                HttpRequestType = httpRequestType,
-                ClaimId = id.ToString("D")
-            };
-
-            _auditContext.Add(claimAudit);
-            _auditContext.SaveChanges();
-        }
-
-        public void AuditCover(string id, string httpRequestType)
-        {
-            var coverAudit = new CoverAudit()
-            {
-                Created = DateTime.Now,
-                HttpRequestType = httpRequestType,
-                CoverId = id
-            };
-
-            _auditContext.Add(coverAudit);
-            _auditContext.SaveChanges();
-        }
+        auditContext.Add(coverAudit);
+        auditContext.SaveChanges();
     }
 }
