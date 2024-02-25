@@ -9,8 +9,7 @@ namespace Claims.Tests
         public async Task Get_Claims()
         {
             var application = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(_ =>
-                {});
+                .WithWebHostBuilder(_ => { });
 
             var client = application.CreateClient();
 
@@ -20,6 +19,5 @@ namespace Claims.Tests
 
             //TODO: Apart from ensuring 200 OK being returned, what else can be asserted?
         }
-
     }
 }
