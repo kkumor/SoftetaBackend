@@ -12,26 +12,37 @@ namespace Claims.Controllers
     public class ClaimsController : ControllerBase
     {
         private readonly IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> _getClaimsHandler;
-        private readonly ILogger<ClaimsController> _logger;
+        private readonly IQueryHandler<GetClaimQuery, GetClaimQueryResult> _getClaimHandler;
         private readonly IClaimsService _claimsService;
         private readonly Auditer _auditer;
 
-        public ClaimsController(IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> getClaimsHandler,
-            ILogger<ClaimsController> logger, IClaimsService claimsService,
+        public ClaimsController(
+            IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> getClaimsHandler,
+            IQueryHandler<GetClaimQuery, GetClaimQueryResult> getClaimHandler,
+            IClaimsService claimsService,
             AuditContext auditContext)
         {
             _getClaimsHandler = getClaimsHandler;
-            _logger = logger;
+            _getClaimHandler = getClaimHandler;
             _claimsService = claimsService;
             _auditer = new Auditer(auditContext);
         }
 
         [HttpGet(Name = "GetAllClaims")]
-        [SwaggerOperation(Summary = "Return claims collection")]
+        [SwaggerOperation(Summary = "Get claims collection")]
         public async Task<IEnumerable<Claim>> GetAsync(CancellationToken cancellationToken = default)
         {
             var queryResult = await _getClaimsHandler.Handle(new GetClaimsQuery(), cancellationToken);
             return queryResult.Claims;
+        }
+
+        [HttpGet("{id}", Name = "GetSingleClaim")]
+        [SwaggerOperation(Summary = "Get claim by id")]
+        public async Task<Claim?> GetAsync(string id, CancellationToken cancellationToken = default)
+        {
+            var query = new GetClaimQuery(id);
+            var queryResult = await _getClaimHandler.Handle(query, cancellationToken);
+            return queryResult.Claim;
         }
 
         [HttpPost]
@@ -48,12 +59,6 @@ namespace Claims.Controllers
         {
             _auditer.AuditClaim(id, "DELETE");
             return _claimsService.DeleteClaimAsync(id, cancellationToken);
-        }
-
-        [HttpGet("{id}")]
-        public Task<Claim?> GetAsync(string id, CancellationToken cancellationToken = default)
-        {
-            return _claimsService.GetClaimAsync(id, cancellationToken);
         }
     }
 }

@@ -4,10 +4,6 @@ using JetBrains.Annotations;
 
 namespace Claims.Application.Claims;
 
-public record GetClaimsQuery;
-
-public record GetClaimsQueryResult(IEnumerable<Claim> Claims);
-
 [UsedImplicitly]
 public class GetClaimsQueryHandler(IClaimsService claimsService) : IQueryHandler<GetClaimsQuery, GetClaimsQueryResult>
 {
@@ -17,3 +13,7 @@ public class GetClaimsQueryHandler(IClaimsService claimsService) : IQueryHandler
         return new GetClaimsQueryResult(claims);
     }
 }
+
+public record GetClaimsQuery;
+
+public record GetClaimsQueryResult(IEnumerable<Claim> Claims);

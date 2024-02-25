@@ -1,3 +1,4 @@
+using System.Globalization;
 using Claims.Application;
 using Claims.Application.Services;
 using Microsoft.Azure.Cosmos;
@@ -20,11 +21,13 @@ public class ClaimsService(Container container) : IClaimsService
         return results;
     }
 
-    public async Task<Claim?> GetClaimAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<Claim?> GetClaimAsync(Guid id, CancellationToken cancellationToken = default)
     {
         try
         {
-            var response = await container.ReadItemAsync<Claim>(id, new PartitionKey(id), null, cancellationToken);
+            var containerId = id.ToString("D");
+            var response = await container.ReadItemAsync<Claim>(containerId, new PartitionKey(containerId), null,
+                cancellationToken);
             return response.Resource;
         }
         catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
