@@ -1,4 +1,4 @@
-﻿namespace Claims;
+﻿namespace Claims.Model;
 
 public enum ClaimType
 {

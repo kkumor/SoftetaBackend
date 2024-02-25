@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
-namespace Claims
+namespace Claims.Model
 {
     public class Claim
     {
-        [JsonProperty(PropertyName = "id")] public required string Id { get; set; }
+        [JsonProperty(PropertyName = "id")] 
+        public required string Id { get; set; }
 
         [JsonProperty(PropertyName = "coverId")]
         public required string CoverId { get; set; }
@@ -13,7 +13,8 @@ namespace Claims
         [JsonProperty(PropertyName = "created")]
         public DateTime Created { get; set; }
 
-        [JsonProperty(PropertyName = "name")] public required string Name { get; set; }
+        [JsonProperty(PropertyName = "name")] 
+        public required string Name { get; set; }
 
         [JsonProperty(PropertyName = "claimType")]
         public ClaimType Type { get; set; }

@@ -2,6 +2,7 @@ using Claims.Application.Claims;
 using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Auditing;
+using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 

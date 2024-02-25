@@ -1,5 +1,6 @@
 ﻿using Claims.Application.Services;
 using Claims.Application.Shared;
+using Claims.Model;
 using JetBrains.Annotations;
 
 namespace Claims.Application.Claims;

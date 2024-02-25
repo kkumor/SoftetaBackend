@@ -1,3 +1,5 @@
+using Claims.Model;
+
 namespace Claims.Application.Services;
 
 public interface IClaimsService

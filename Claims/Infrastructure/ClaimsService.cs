@@ -1,6 +1,7 @@
 using System.Globalization;
 using Claims.Application;
 using Claims.Application.Services;
+using Claims.Model;
 using Microsoft.Azure.Cosmos;
 
 namespace Claims.Infrastructure;
