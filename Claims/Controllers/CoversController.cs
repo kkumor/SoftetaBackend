@@ -1,6 +1,7 @@
 using Claims.Application.Claims;
 using Claims.Application.Shared;
 using Claims.Auditing;
+using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 
@@ -14,10 +15,10 @@ public class CoversController : ControllerBase
     private readonly Auditer _auditer;
     private readonly Container _container;
 
-    public CoversController(CosmosClient cosmosClient, AuditContext auditContext, ILogger<CoversController> logger)
+    public CoversController(CosmosClient cosmosClient, Auditer auditer, ILogger<CoversController> logger)
     {
+        _auditer = auditer;
         _logger = logger;
-        _auditer = new Auditer(auditContext);
         _container = cosmosClient.GetContainer("ClaimDb", "Cover") ??
                      throw new ArgumentNullException(nameof(cosmosClient));
     }
@@ -64,14 +65,14 @@ public class CoversController : ControllerBase
         cover.Id = Guid.NewGuid().ToString();
         cover.Premium = ComputePremium(cover.StartDate, cover.EndDate, cover.Type);
         await _container.CreateItemAsync(cover, new PartitionKey(cover.Id));
-        _auditer.AuditCover(cover.Id, "POST");
+        _auditer.AuditCover(new Guid(cover.Id), "POST");
         return Ok(cover);
     }
 
     [HttpDelete("{id}")]
     public Task DeleteAsync(string id)
     {
-        _auditer.AuditCover(id, "DELETE");
+        _auditer.AuditCover(new Guid(id), "DELETE");
         return _container.DeleteItemAsync<Cover>(id, new(id));
     }
 
