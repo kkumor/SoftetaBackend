@@ -15,6 +15,6 @@ public class GetClaimQueryHandler(IClaimsService claimsService) : IQueryHandler<
     }
 }
 
-public record GetClaimQuery(Guid Id);
+public record GetClaimQuery(Guid Id) : IQuery;
 
-public record GetClaimQueryResult(Claim? Claim);
+public record GetClaimQueryResult(Claim? Claim) : IQueryResult;

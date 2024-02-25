@@ -15,6 +15,6 @@ public class GetClaimsQueryHandler(IClaimsService claimsService) : IQueryHandler
     }
 }
 
-public record GetClaimsQuery;
+public record GetClaimsQuery : IQuery;
 
-public record GetClaimsQueryResult(IEnumerable<Claim> Claims);
+public record GetClaimsQueryResult(IEnumerable<Claim> Claims) : IQueryResult;

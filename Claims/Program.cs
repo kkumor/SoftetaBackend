@@ -25,7 +25,7 @@ builder.Services.AddSingleton(
 builder.Services.AddDbContext<AuditContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-RegisterQueryHandlers(builder.Services);
+RegisterHandlers(builder.Services);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,7 +55,7 @@ using (var scope = app.Services.CreateScope())
 app.Run();
 return;
 
-void RegisterQueryHandlers(IServiceCollection services)
+void RegisterHandlers(IServiceCollection services)
 {
     var assembly = Assembly.GetExecutingAssembly();
 
@@ -66,6 +66,11 @@ void RegisterQueryHandlers(IServiceCollection services)
             foreach (var i in type.GetInterfaces())
             {
                 if (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>))
+                {
+                    services.AddScoped(i, type);
+                }
+
+                if (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>))
                 {
                     services.AddScoped(i, type);
                 }
