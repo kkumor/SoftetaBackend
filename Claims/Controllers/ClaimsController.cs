@@ -16,6 +16,7 @@ namespace Claims.Controllers
         private readonly IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> _getClaimsHandler;
         private readonly IQueryHandler<GetClaimQuery, GetClaimQueryResult> _getClaimHandler;
         private readonly ICommandHandler<AddClaimCommand, AddClaimCommandResult> _addClaimHandler;
+        private readonly ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> _removeClaimHandler;
         private readonly IClaimsService _claimsService;
         private readonly Auditer _auditer;
 
@@ -23,12 +24,14 @@ namespace Claims.Controllers
             IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> getClaimsHandler,
             IQueryHandler<GetClaimQuery, GetClaimQueryResult> getClaimHandler,
             ICommandHandler<AddClaimCommand, AddClaimCommandResult> addClaimHandler,
+            ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> removeClaimHandler,
             IClaimsService claimsService,
             AuditContext auditContext)
         {
             _getClaimsHandler = getClaimsHandler;
             _getClaimHandler = getClaimHandler;
             _addClaimHandler = addClaimHandler;
+            _removeClaimHandler = removeClaimHandler;
             _claimsService = claimsService;
             _auditer = new Auditer(auditContext);
         }
@@ -59,11 +62,12 @@ namespace Claims.Controllers
             return Ok(commandResult.Claim);
         }
 
-        [HttpDelete("{id}")]
-        public Task DeleteAsync(string id, CancellationToken cancellationToken = default)
+        [HttpDelete("{id}", Name = "RemoveClaim")]
+        [SwaggerOperation(Summary = "Remove claim")]
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            _auditer.AuditClaim(id, "DELETE");
-            return _claimsService.DeleteClaimAsync(id, cancellationToken);
+            var command = new RemoveClaimCommand(id);
+            await _removeClaimHandler.Handle(command, cancellationToken);
         }
     }
 }

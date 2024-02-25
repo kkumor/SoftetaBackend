@@ -11,20 +11,21 @@ namespace Claims.Application.Claims;
 public class AddClaimCommandHandler(IClaimsService claimsService, Auditer auditer)
     : ICommandHandler<AddClaimCommand, AddClaimCommandResult>
 {
-    public async Task<AddClaimCommandResult> Handle(AddClaimCommand query,
+    public async Task<AddClaimCommandResult> Handle(AddClaimCommand command,
         CancellationToken cancellationToken = default)
     {
+        var claimId = Guid.NewGuid();
         var claim = new Claim
         {
-            Id = Guid.NewGuid().ToString(),
-            Name = query.Name,
-            CoverId = query.CoverId,
-            Type = query.Type,
-            DamageCost = query.DamageCost,
+            Id = claimId.ToString("D"),
+            Name = command.Name,
+            CoverId = command.CoverId,
+            Type = command.Type,
+            DamageCost = command.DamageCost,
             Created = DateTime.UtcNow
         };
         await claimsService.AddClaimAsync(claim, cancellationToken);
-        auditer.AuditClaim(claim.Id, "POST");
+        auditer.AuditClaim(claimId, "POST");
         return new AddClaimCommandResult(claim);
     }
 }

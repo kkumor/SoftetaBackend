@@ -40,6 +40,9 @@ public class ClaimsService(Container container) : IClaimsService
     public Task AddClaimAsync(Claim item, CancellationToken cancellationToken = default) =>
         container.CreateItemAsync(item, new PartitionKey(item.Id), null, cancellationToken);
 
-    public Task DeleteClaimAsync(string id, CancellationToken cancellationToken = default) =>
-        container.DeleteItemAsync<Claim>(id, new PartitionKey(id), null, cancellationToken);
+    public Task DeleteClaimAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var containerId = id.ToString("D");
+        return container.DeleteItemAsync<Claim>(containerId, new PartitionKey(containerId), null, cancellationToken);
+    }
 }
