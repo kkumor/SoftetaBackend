@@ -1,3 +1,5 @@
+using Claims.Application.Claims;
+using Claims.Application.Shared;
 using Claims.Auditing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
@@ -23,7 +25,8 @@ public class CoversController : ControllerBase
     [HttpPost("premium")]
     public async Task<ActionResult> ComputePremiumAsync(DateOnly startDate, DateOnly endDate, CoverType coverType)
     {
-        return Ok(ComputePremium(startDate, endDate, coverType));
+        var computePremium = ComputePremium(startDate, endDate, coverType);
+        return Ok(computePremium);
     }
 
     [HttpGet]

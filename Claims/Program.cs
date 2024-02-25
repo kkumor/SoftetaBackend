@@ -1,6 +1,9 @@
 using System.Configuration;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Claims.Application;
+using Claims.Application.Services;
+using Claims.Application.Shared;
 using Claims.Auditing;
 using Claims.Controllers;
 using Claims.Infrastructure;
@@ -22,9 +25,11 @@ builder.Services.AddSingleton(
 builder.Services.AddDbContext<AuditContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+RegisterQueryHandlers(builder.Services);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.EnableAnnotations());
 
 var app = builder.Build();
 
@@ -48,6 +53,26 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+return;
+
+void RegisterQueryHandlers(IServiceCollection services)
+{
+    var assembly = Assembly.GetExecutingAssembly();
+
+    foreach (var type in assembly.GetTypes())
+    {
+        if (type is { IsClass: true, IsAbstract: false })
+        {
+            foreach (var i in type.GetInterfaces())
+            {
+                if (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IQueryHandler<,>))
+                {
+                    services.AddScoped(i, type);
+                }
+            }
+        }
+    }
+}
 
 static async Task<IClaimsService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
 {

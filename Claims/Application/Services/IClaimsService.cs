@@ -1,4 +1,4 @@
-namespace Claims.Application;
+namespace Claims.Application.Services;
 
 public interface IClaimsService
 {

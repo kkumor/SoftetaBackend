@@ -1,4 +1,5 @@
 using Claims.Application;
+using Claims.Application.Services;
 using Microsoft.Azure.Cosmos;
 
 namespace Claims.Infrastructure;
