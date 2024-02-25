@@ -20,4 +20,4 @@ public class RemoveClaimCommandHandler(IClaimsService claimsService, Auditer aud
 
 public record RemoveClaimCommand(Guid Id) : ICommand;
 
-public record RemoveClaimCommandResult : ICommandResult;
+public record RemoveClaimCommandResult() : ICommandResult;

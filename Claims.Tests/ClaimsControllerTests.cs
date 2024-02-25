@@ -1,23 +1,72 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Claims.Controllers.Model;
+using Claims.Model;
+using FluentAssertions;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using Xunit;
 
-namespace Claims.Tests
+namespace Claims.Tests;
+
+public class ClaimsControllerTests
 {
-    public class ClaimsControllerTests
+    private readonly TestClient _sut = TestClientBuilder.CreateTestClient();
+
+    [Fact]
+    public async Task ShouldBeAbleToCreateNewClaim()
     {
-        [Fact]
-        public async Task Get_Claims()
+        var addClaim = new AddClaimDto
         {
-            var application = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(_ => { });
+            Name = "Test",
+            CoverId = "1",
+            DamageCost = 2,
+            Type = ClaimType.Grounding
+        };
 
-            var client = application.CreateClient();
+        var createdClaim = await _sut.CreateClaim(addClaim);
+        createdClaim.Should().NotBeNull();
 
-            var response = await client.GetAsync("/Claims");
+        var claim = await _sut.GetClaim(createdClaim.Id);
+        claim.Should().NotBeNull();
+        claim.Id.Should().Be(createdClaim.Id);
+    }
 
-            response.EnsureSuccessStatusCode();
+    [Fact]
+    public async Task ShouldBeAbleToCreateNewClaimAndFindItInClaimsCollection()
+    {
+        var addClaim = new AddClaimDto
+        {
+            Name = "Test",
+            CoverId = "2",
+            DamageCost = 3,
+            Type = ClaimType.BadWeather
+        };
 
-            //TODO: Apart from ensuring 200 OK being returned, what else can be asserted?
-        }
+        var createdClaim = await _sut.CreateClaim(addClaim);
+        createdClaim.Should().NotBeNull();
+
+        var claims = await _sut.GetClaims();
+        claims.Should().NotBeNull();
+        claims.Should().ContainSingle(x => x.Id == createdClaim.Id);
+    }
+
+    [Fact]
+    public async Task ShouldBeAbleToDeleteClaim()
+    {
+        var addClaim = new AddClaimDto
+        {
+            Name = "Test",
+            CoverId = "3",
+            DamageCost = 4,
+            Type = ClaimType.Fire
+        };
+
+        var createdClaim = await _sut.CreateClaim(addClaim);
+        createdClaim.Should().NotBeNull();
+
+        await _sut.DeleteClaim(createdClaim.Id);
+        var claims = await _sut.GetClaims();
+        claims.Should().NotBeNull();
+        claims.Should().NotContainEquivalentOf(createdClaim);
     }
 }

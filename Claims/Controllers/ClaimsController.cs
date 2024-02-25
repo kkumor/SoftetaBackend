@@ -17,23 +17,17 @@ namespace Claims.Controllers
         private readonly IQueryHandler<GetClaimQuery, GetClaimQueryResult> _getClaimHandler;
         private readonly ICommandHandler<AddClaimCommand, AddClaimCommandResult> _addClaimHandler;
         private readonly ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> _removeClaimHandler;
-        private readonly IClaimsService _claimsService;
-        private readonly Auditer _auditer;
 
         public ClaimsController(
             IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> getClaimsHandler,
             IQueryHandler<GetClaimQuery, GetClaimQueryResult> getClaimHandler,
             ICommandHandler<AddClaimCommand, AddClaimCommandResult> addClaimHandler,
-            ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> removeClaimHandler,
-            IClaimsService claimsService,
-            AuditContext auditContext)
+            ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> removeClaimHandler)
         {
             _getClaimsHandler = getClaimsHandler;
             _getClaimHandler = getClaimHandler;
             _addClaimHandler = addClaimHandler;
             _removeClaimHandler = removeClaimHandler;
-            _claimsService = claimsService;
-            _auditer = new Auditer(auditContext);
         }
 
         [HttpGet(Name = "GetAllClaims")]
