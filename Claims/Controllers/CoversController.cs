@@ -96,11 +96,28 @@ public class CoversController : ControllerBase
 
         for (var i = 0; i < insuranceLength; i++)
         {
-            if (i < 30) totalPremium += premiumPerDay;
-            if (i < 180 && coverType == CoverType.Yacht) totalPremium += premiumPerDay - premiumPerDay * 0.05m;
-            else if (i < 180) totalPremium += premiumPerDay - premiumPerDay * 0.02m;
-            if (i < 365 && coverType != CoverType.Yacht) totalPremium += premiumPerDay - premiumPerDay * 0.03m;
-            else if (i < 365) totalPremium += premiumPerDay - premiumPerDay * 0.08m;
+            if (i < 30)
+            {
+                totalPremium += premiumPerDay;
+            }
+
+            if (i < 180 && coverType == CoverType.Yacht)
+            {
+                totalPremium += premiumPerDay - premiumPerDay * 0.05m;
+            }
+            else if (i < 180)
+            {
+                totalPremium += premiumPerDay - premiumPerDay * 0.02m;
+            }
+
+            if (i < 365 && coverType != CoverType.Yacht)
+            {
+                totalPremium += premiumPerDay - premiumPerDay * 0.03m;
+            }
+            else if (i < 365)
+            {
+                totalPremium += premiumPerDay - premiumPerDay * 0.08m;
+            }
         }
 
         return totalPremium;
