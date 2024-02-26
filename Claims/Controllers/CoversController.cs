@@ -1,6 +1,8 @@
-using Claims.Application.Claims;
+using Claims.Application.Covers;
+using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Auditing;
+using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
@@ -11,22 +13,27 @@ namespace Claims.Controllers;
 [Route("[controller]")]
 public class CoversController : ControllerBase
 {
-    private readonly ILogger<CoversController> _logger;
+    private readonly ICommandHandler<AddCoverCommand, AddCoverCommandResult> _addCoverCommandHandler;
+    private readonly IRateService _rateService;
     private readonly Auditer _auditer;
     private readonly Container _container;
 
-    public CoversController(CosmosClient cosmosClient, Auditer auditer, ILogger<CoversController> logger)
+    public CoversController(
+        ICommandHandler<AddCoverCommand, AddCoverCommandResult> addCoverCommandHandler,
+        IRateService rateService,
+        CosmosClient cosmosClient, Auditer auditer)
     {
+        _addCoverCommandHandler = addCoverCommandHandler;
+        _rateService = rateService;
         _auditer = auditer;
-        _logger = logger;
         _container = cosmosClient.GetContainer("ClaimDb", "Cover") ??
                      throw new ArgumentNullException(nameof(cosmosClient));
     }
 
-    [HttpPost("premium")]
+    [HttpPost("actions/compute-premium")]
     public async Task<ActionResult> ComputePremiumAsync(DateOnly startDate, DateOnly endDate, CoverType coverType)
     {
-        var computePremium = ComputePremium(startDate, endDate, coverType);
+        var computePremium = _rateService.ComputePremium(startDate, endDate, coverType);
         return Ok(computePremium);
     }
 
@@ -60,13 +67,11 @@ public class CoversController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateAsync(Cover cover)
+    public async Task<ActionResult> CreateAsync(AddCoverDto cover, CancellationToken cancellationToken = default)
     {
-        cover.Id = Guid.NewGuid().ToString();
-        cover.Premium = ComputePremium(cover.StartDate, cover.EndDate, cover.Type);
-        await _container.CreateItemAsync(cover, new PartitionKey(cover.Id));
-        _auditer.AuditCover(new Guid(cover.Id), "POST");
-        return Ok(cover);
+        var addCoverCommand = new AddCoverCommand(cover.Type, cover.StartDate, cover.EndDate);
+        var addCoverResult = await _addCoverCommandHandler.Handle(addCoverCommand, cancellationToken);
+        return Ok(addCoverResult.Cover);
     }
 
     [HttpDelete("{id}")]
@@ -74,56 +79,5 @@ public class CoversController : ControllerBase
     {
         _auditer.AuditCover(new Guid(id), "DELETE");
         return _container.DeleteItemAsync<Cover>(id, new(id));
-    }
-
-    private decimal ComputePremium(DateOnly startDate, DateOnly endDate, CoverType coverType)
-    {
-        var multiplier = 1.3m;
-        if (coverType == CoverType.Yacht)
-        {
-            multiplier = 1.1m;
-        }
-
-        if (coverType == CoverType.PassengerShip)
-        {
-            multiplier = 1.2m;
-        }
-
-        if (coverType == CoverType.Tanker)
-        {
-            multiplier = 1.5m;
-        }
-
-        var premiumPerDay = 1250 * multiplier;
-        var insuranceLength = endDate.DayNumber - startDate.DayNumber;
-        var totalPremium = 0m;
-
-        for (var i = 0; i < insuranceLength; i++)
-        {
-            if (i < 30)
-            {
-                totalPremium += premiumPerDay;
-            }
-
-            if (i < 180 && coverType == CoverType.Yacht)
-            {
-                totalPremium += premiumPerDay - premiumPerDay * 0.05m;
-            }
-            else if (i < 180)
-            {
-                totalPremium += premiumPerDay - premiumPerDay * 0.02m;
-            }
-
-            if (i < 365 && coverType != CoverType.Yacht)
-            {
-                totalPremium += premiumPerDay - premiumPerDay * 0.03m;
-            }
-            else if (i < 365)
-            {
-                totalPremium += premiumPerDay - premiumPerDay * 0.08m;
-            }
-        }
-
-        return totalPremium;
     }
 }

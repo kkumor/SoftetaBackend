@@ -2,6 +2,7 @@ using System.Configuration;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Claims.Application;
+using Claims.Application.Covers;
 using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Auditing;
@@ -21,13 +22,13 @@ builder.Services.AddControllers().AddJsonOptions(x =>
     }
 );
 
-builder.Services.AddSingleton(
-    InitializeCosmosClientInstanceAsync(builder.Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
+RegisterCosmosServices(builder.Configuration.GetSection("CosmosDb"), builder.Services).GetAwaiter().GetResult();
 
 builder.Services.AddDbContext<AuditContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IAuditerService, Auditer>();
+builder.Services.AddScoped<IRateService, RateService>();
 RegisterHandlers(builder.Services);
 RegisterMasstransit(builder.Services);
 
@@ -96,18 +97,22 @@ void RegisterHandlers(IServiceCollection services)
     }
 }
 
-static async Task<IClaimsService> InitializeCosmosClientInstanceAsync(IConfigurationSection configurationSection)
+static async Task RegisterCosmosServices(IConfigurationSection configurationSection,
+    IServiceCollection services)
 {
     var databaseName = configurationSection.GetSection("DatabaseName").Value;
-    var containerName = configurationSection.GetSection("ContainerName").Value;
+    var claimsContainer = configurationSection.GetSection("ClaimContainerName").Value;
+    var coversContainer = configurationSection.GetSection("CoverContainerName").Value;
     var account = configurationSection.GetSection("Account").Value;
     var key = configurationSection.GetSection("Key").Value;
     var client = new Microsoft.Azure.Cosmos.CosmosClient(account, key);
-    var cosmosContainer = client.GetContainer(databaseName, containerName);
-    var cosmosDbService = new ClaimsService(cosmosContainer);
+
+    services.AddScoped<IClaimsService>(_ => new ClaimsService(client.GetContainer(databaseName, claimsContainer)));
+    services.AddScoped<ICoversService>(_ => new CoversService(client.GetContainer(databaseName, coversContainer)));
+
     var database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-    await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
-    return cosmosDbService;
+    await database.Database.CreateContainerIfNotExistsAsync(claimsContainer, "/id");
+    await database.Database.CreateContainerIfNotExistsAsync(coversContainer, "/id");
 }
 
 public partial class Program
