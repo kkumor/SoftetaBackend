@@ -3,7 +3,7 @@ using Claims.Model;
 using FluentAssertions;
 using Xunit;
 
-namespace Claims.Tests;
+namespace Claims.Tests.Controllers;
 
 public class CoversControllerTests
 {
