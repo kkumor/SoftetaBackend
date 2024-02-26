@@ -6,14 +6,33 @@ namespace Claims.Infrastructure;
 
 public class CoversService(Container container) : ICoversService
 {
-    public Task<IEnumerable<Cover>> GetCoversAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Cover>> GetCoversAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var coversQuery = new QueryDefinition("SELECT * FROM c");
+        var queryResult = container.GetItemQueryIterator<Cover>(coversQuery);
+        var results = new List<Cover>();
+        while (queryResult.HasMoreResults)
+        {
+            var response = await queryResult.ReadNextAsync(cancellationToken);
+            results.AddRange(response.ToList());
+        }
+
+        return results;
     }
 
-    public Task<Cover?> GetCoverAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Cover?> GetCoverAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var containerId = id.ToString("D");
+            var response = await container.ReadItemAsync<Cover>(containerId, new PartitionKey(containerId), null,
+                cancellationToken);
+            return response.Resource;
+        }
+        catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            return default;
+        }
     }
 
     public Task AddCoverAsync(Cover item, CancellationToken cancellationToken = default) =>

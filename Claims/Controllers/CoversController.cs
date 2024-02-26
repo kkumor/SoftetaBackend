@@ -7,6 +7,7 @@ using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using Swashbuckle.AspNetCore.Annotations;
+using GetCoversQuery = Claims.Application.Covers.GetCoversQuery;
 
 namespace Claims.Controllers;
 
@@ -14,24 +15,24 @@ namespace Claims.Controllers;
 [Route("[controller]")]
 public class CoversController : ControllerBase
 {
+    private readonly IQueryHandler<GetCoversQuery, GetCoversQueryResult> _getCoversHandler;
+    private readonly IQueryHandler<GetCoverQuery, GetCoverQueryResult> _getCoverHandler;
     private readonly ICommandHandler<AddCoverCommand, AddCoverCommandResult> _addCoverCommandHandler;
     private readonly ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> _removeCoverCommandHandler;
     private readonly IRateService _rateService;
-    private readonly Auditer _auditer;
-    private readonly Container _container;
 
     public CoversController(
+        IQueryHandler<GetCoversQuery, GetCoversQueryResult> getCoversHandler,
+        IQueryHandler<GetCoverQuery, GetCoverQueryResult> getCoverHandler,
         ICommandHandler<AddCoverCommand, AddCoverCommandResult> addCoverCommandHandler,
         ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> removeCoverCommandHandler,
-        IRateService rateService,
-        CosmosClient cosmosClient, Auditer auditer)
+        IRateService rateService)
     {
+        _getCoversHandler = getCoversHandler;
+        _getCoverHandler = getCoverHandler;
         _addCoverCommandHandler = addCoverCommandHandler;
         _removeCoverCommandHandler = removeCoverCommandHandler;
         _rateService = rateService;
-        _auditer = auditer;
-        _container = cosmosClient.GetContainer("ClaimDb", "Cover") ??
-                     throw new ArgumentNullException(nameof(cosmosClient));
     }
 
     [HttpPost("actions/compute-premium", Name = "Compute Premium")]
@@ -42,33 +43,21 @@ public class CoversController : ControllerBase
         return Ok(computePremium);
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Cover>>> GetAsync()
+    [HttpGet(Name = "GetAllCovers")]
+    [SwaggerOperation(Summary = "Get covers collection")]
+    public async Task<ActionResult<IEnumerable<Cover>>> GetAsync(CancellationToken cancellationToken = default)
     {
-        var query = _container.GetItemQueryIterator<Cover>(new QueryDefinition("SELECT * FROM c"));
-        var results = new List<Cover>();
-        while (query.HasMoreResults)
-        {
-            var response = await query.ReadNextAsync();
-
-            results.AddRange(response.ToList());
-        }
-
-        return Ok(results);
+        var queryResult = await _getCoversHandler.Handle(new GetCoversQuery(), cancellationToken);
+        return new OkObjectResult(queryResult.Covers);
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Cover>> GetAsync(string id)
+    [HttpGet("{id}", Name = "GetSingleCover")]
+    [SwaggerOperation(Summary = "Get cover by id")]
+    public async Task<ActionResult<Cover?>> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var response = await _container.ReadItemAsync<Cover>(id, new(id));
-            return Ok(response.Resource);
-        }
-        catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
-        {
-            return NotFound();
-        }
+        var query = new GetCoverQuery(id);
+        var queryResult = await _getCoverHandler.Handle(query, cancellationToken);
+        return queryResult.Cover != default ? Ok(queryResult.Cover) : NotFound();
     }
 
     [HttpPost(Name = "AddCover")]

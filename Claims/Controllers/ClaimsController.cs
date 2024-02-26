@@ -39,11 +39,11 @@ namespace Claims.Controllers
 
         [HttpGet("{id}", Name = "GetSingleClaim")]
         [SwaggerOperation(Summary = "Get claim by id")]
-        public async Task<Claim?> GetAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<Claim?>> GetAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var query = new GetClaimQuery(id);
             var queryResult = await _getClaimHandler.Handle(query, cancellationToken);
-            return queryResult.Claim;
+            return queryResult.Claim != default ? Ok(queryResult.Claim) : NotFound();
         }
 
         [HttpPost(Name = "AddClaim")]
