@@ -7,23 +7,16 @@ public class RateService : IRateService
 {
     public decimal ComputePremium(DateOnly startDate, DateOnly endDate, CoverType coverType)
     {
-        var multiplier = 1.3m;
-        if (coverType == CoverType.Yacht)
+        var multiplier = coverType switch
         {
-            multiplier = 1.1m;
-        }
+            CoverType.Yacht => 1.1m,
+            CoverType.PassengerShip => 1.2m,
+            CoverType.Tanker => 1.5m,
+            _ => 1.3m
+        };
 
-        if (coverType == CoverType.PassengerShip)
-        {
-            multiplier = 1.2m;
-        }
-
-        if (coverType == CoverType.Tanker)
-        {
-            multiplier = 1.5m;
-        }
-
-        var premiumPerDay = 1250 * multiplier;
+        const int baseRate = 1250;
+        var premiumPerDay = baseRate * multiplier;
         var insuranceLength = endDate.DayNumber - startDate.DayNumber;
         var totalPremium = 0m;
 

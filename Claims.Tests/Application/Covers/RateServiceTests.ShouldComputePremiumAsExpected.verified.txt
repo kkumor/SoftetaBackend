@@ -1,0 +1,282 @@
+﻿[
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-01,
+      CoverType: Yacht
+    },
+    Item2: 0.0
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-02,
+      CoverType: Yacht
+    },
+    Item2: 3946.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-31,
+      CoverType: Yacht
+    },
+    Item2: 118387.500
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-29,
+      CoverType: Yacht
+    },
+    Item2: 504075.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-30,
+      CoverType: Yacht
+    },
+    Item2: 505340.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-12-31,
+      CoverType: Yacht
+    },
+    Item2: 738100.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2025-01-01,
+      CoverType: Yacht
+    },
+    Item2: 738100.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-01,
+      CoverType: PassengerShip
+    },
+    Item2: 0.0
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-02,
+      CoverType: PassengerShip
+    },
+    Item2: 4425.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-31,
+      CoverType: PassengerShip
+    },
+    Item2: 132750.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-29,
+      CoverType: PassengerShip
+    },
+    Item2: 571500.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-30,
+      CoverType: PassengerShip
+    },
+    Item2: 572955.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-12-31,
+      CoverType: PassengerShip
+    },
+    Item2: 840675.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2025-01-01,
+      CoverType: PassengerShip
+    },
+    Item2: 840675.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-01,
+      CoverType: ContainerShip
+    },
+    Item2: 0.0
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-02,
+      CoverType: ContainerShip
+    },
+    Item2: 4793.750
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-31,
+      CoverType: ContainerShip
+    },
+    Item2: 143812.500
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-29,
+      CoverType: ContainerShip
+    },
+    Item2: 619125.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-30,
+      CoverType: ContainerShip
+    },
+    Item2: 620701.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-12-31,
+      CoverType: ContainerShip
+    },
+    Item2: 910731.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2025-01-01,
+      CoverType: ContainerShip
+    },
+    Item2: 910731.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-01,
+      CoverType: BulkCarrier
+    },
+    Item2: 0.0
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-02,
+      CoverType: BulkCarrier
+    },
+    Item2: 4793.750
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-31,
+      CoverType: BulkCarrier
+    },
+    Item2: 143812.500
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-29,
+      CoverType: BulkCarrier
+    },
+    Item2: 619125.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-30,
+      CoverType: BulkCarrier
+    },
+    Item2: 620701.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-12-31,
+      CoverType: BulkCarrier
+    },
+    Item2: 910731.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2025-01-01,
+      CoverType: BulkCarrier
+    },
+    Item2: 910731.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-01,
+      CoverType: Tanker
+    },
+    Item2: 0.0
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-02,
+      CoverType: Tanker
+    },
+    Item2: 5531.250
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-01-31,
+      CoverType: Tanker
+    },
+    Item2: 165937.500
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-29,
+      CoverType: Tanker
+    },
+    Item2: 714375.000
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-06-30,
+      CoverType: Tanker
+    },
+    Item2: 716193.750
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2024-12-31,
+      CoverType: Tanker
+    },
+    Item2: 1050843.750
+  },
+  {
+    Item1: {
+      Start: 2024-01-01,
+      End: 2025-01-01,
+      CoverType: Tanker
+    },
+    Item2: 1050843.750
+  }
+]

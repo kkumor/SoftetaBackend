@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Covers\" />
+    <Folder Include="Application\NewFolder\" />
     <Folder Include="TestResults\" />
   </ItemGroup>
 
