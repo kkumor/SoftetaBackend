@@ -13,7 +13,7 @@
       End: 2024-01-02,
       CoverType: Yacht
     },
-    Item2: 3946.250
+    Item2: 1375.0
   },
   {
     Item1: {
@@ -21,7 +21,7 @@
       End: 2024-01-31,
       CoverType: Yacht
     },
-    Item2: 118387.500
+    Item2: 41250.0
   },
   {
     Item1: {
@@ -29,7 +29,7 @@
       End: 2024-06-29,
       CoverType: Yacht
     },
-    Item2: 504075.000
+    Item2: 247492.50
   },
   {
     Item1: {
@@ -37,7 +37,7 @@
       End: 2024-06-30,
       CoverType: Yacht
     },
-    Item2: 505340.000
+    Item2: 248867.42
   },
   {
     Item1: {
@@ -45,7 +45,7 @@
       End: 2024-12-31,
       CoverType: Yacht
     },
-    Item2: 738100.000
+    Item2: 501852.70
   },
   {
     Item1: {
@@ -53,7 +53,7 @@
       End: 2025-01-01,
       CoverType: Yacht
     },
-    Item2: 738100.000
+    Item2: 503226.70
   },
   {
     Item1: {
@@ -69,7 +69,7 @@
       End: 2024-01-02,
       CoverType: PassengerShip
     },
-    Item2: 4425.000
+    Item2: 1500.0
   },
   {
     Item1: {
@@ -77,7 +77,7 @@
       End: 2024-01-31,
       CoverType: PassengerShip
     },
-    Item2: 132750.000
+    Item2: 45000.0
   },
   {
     Item1: {
@@ -85,7 +85,7 @@
       End: 2024-06-29,
       CoverType: PassengerShip
     },
-    Item2: 571500.000
+    Item2: 269997.00
   },
   {
     Item1: {
@@ -93,7 +93,7 @@
       End: 2024-06-30,
       CoverType: PassengerShip
     },
-    Item2: 572955.000
+    Item2: 271496.97
   },
   {
     Item1: {
@@ -101,7 +101,7 @@
       End: 2024-12-31,
       CoverType: PassengerShip
     },
-    Item2: 840675.000
+    Item2: 547491.45
   },
   {
     Item1: {
@@ -109,7 +109,7 @@
       End: 2025-01-01,
       CoverType: PassengerShip
     },
-    Item2: 840675.000
+    Item2: 548990.45
   },
   {
     Item1: {
@@ -125,7 +125,7 @@
       End: 2024-01-02,
       CoverType: ContainerShip
     },
-    Item2: 4793.750
+    Item2: 1625.0
   },
   {
     Item1: {
@@ -133,7 +133,7 @@
       End: 2024-01-31,
       CoverType: ContainerShip
     },
-    Item2: 143812.500
+    Item2: 48750.0
   },
   {
     Item1: {
@@ -141,7 +141,7 @@
       End: 2024-06-29,
       CoverType: ContainerShip
     },
-    Item2: 619125.000
+    Item2: 292497.00
   },
   {
     Item1: {
@@ -149,7 +149,7 @@
       End: 2024-06-30,
       CoverType: ContainerShip
     },
-    Item2: 620701.250
+    Item2: 294121.97
   },
   {
     Item1: {
@@ -157,7 +157,7 @@
       End: 2024-12-31,
       CoverType: ContainerShip
     },
-    Item2: 910731.250
+    Item2: 593116.45
   },
   {
     Item1: {
@@ -165,7 +165,7 @@
       End: 2025-01-01,
       CoverType: ContainerShip
     },
-    Item2: 910731.250
+    Item2: 594740.45
   },
   {
     Item1: {
@@ -181,7 +181,7 @@
       End: 2024-01-02,
       CoverType: BulkCarrier
     },
-    Item2: 4793.750
+    Item2: 1625.0
   },
   {
     Item1: {
@@ -189,7 +189,7 @@
       End: 2024-01-31,
       CoverType: BulkCarrier
     },
-    Item2: 143812.500
+    Item2: 48750.0
   },
   {
     Item1: {
@@ -197,7 +197,7 @@
       End: 2024-06-29,
       CoverType: BulkCarrier
     },
-    Item2: 619125.000
+    Item2: 292497.00
   },
   {
     Item1: {
@@ -205,7 +205,7 @@
       End: 2024-06-30,
       CoverType: BulkCarrier
     },
-    Item2: 620701.250
+    Item2: 294121.97
   },
   {
     Item1: {
@@ -213,7 +213,7 @@
       End: 2024-12-31,
       CoverType: BulkCarrier
     },
-    Item2: 910731.250
+    Item2: 593116.45
   },
   {
     Item1: {
@@ -221,7 +221,7 @@
       End: 2025-01-01,
       CoverType: BulkCarrier
     },
-    Item2: 910731.250
+    Item2: 594740.45
   },
   {
     Item1: {
@@ -237,7 +237,7 @@
       End: 2024-01-02,
       CoverType: Tanker
     },
-    Item2: 5531.250
+    Item2: 1875.0
   },
   {
     Item1: {
@@ -245,7 +245,7 @@
       End: 2024-01-31,
       CoverType: Tanker
     },
-    Item2: 165937.500
+    Item2: 56250.0
   },
   {
     Item1: {
@@ -253,7 +253,7 @@
       End: 2024-06-29,
       CoverType: Tanker
     },
-    Item2: 714375.000
+    Item2: 337497.00
   },
   {
     Item1: {
@@ -261,7 +261,7 @@
       End: 2024-06-30,
       CoverType: Tanker
     },
-    Item2: 716193.750
+    Item2: 339371.97
   },
   {
     Item1: {
@@ -269,7 +269,7 @@
       End: 2024-12-31,
       CoverType: Tanker
     },
-    Item2: 1050843.750
+    Item2: 684366.45
   },
   {
     Item1: {
@@ -277,6 +277,6 @@
       End: 2025-01-01,
       CoverType: Tanker
     },
-    Item2: 1050843.750
+    Item2: 686240.45
   }
 ]

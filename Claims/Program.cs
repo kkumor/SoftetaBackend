@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using Claims.Application.Auditing;
 using Claims.Application.Covers;
+using Claims.Application.Covers.Rates;
 using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Infrastructure;

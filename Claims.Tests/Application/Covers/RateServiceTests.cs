@@ -1,4 +1,4 @@
-﻿using Claims.Application.Covers;
+﻿using Claims.Application.Covers.Rates;
 using Claims.Model;
 
 namespace Claims.Tests.Application.Covers;
