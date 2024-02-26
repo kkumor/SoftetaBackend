@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using GetCoversQuery = Claims.Application.Covers.GetCoversQuery;
 
-namespace Claims.Controllers;
+namespace Claims.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -5,7 +5,7 @@ using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Claims.Controllers
+namespace Claims.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,13 +1,13 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Claims.Application.Auditing;
-using Claims.Application.Covers;
 using Claims.Application.Covers.Rates;
 using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Infrastructure;
 using Claims.Model;
 using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,6 +19,10 @@ builder.Services.AddControllers().AddJsonOptions(x =>
         x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     }
 );
+
+builder.Services.Configure<ApiBehaviorOptions>(options
+    => options.SuppressModelStateInvalidFilter = true);
+
 
 RegisterCosmosServices(builder.Configuration.GetSection("CosmosDb"), builder.Services).GetAwaiter().GetResult();
 
