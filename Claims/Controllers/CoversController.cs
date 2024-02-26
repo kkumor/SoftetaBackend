@@ -6,6 +6,7 @@ using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Claims.Controllers;
 
@@ -33,7 +34,8 @@ public class CoversController : ControllerBase
                      throw new ArgumentNullException(nameof(cosmosClient));
     }
 
-    [HttpPost("actions/compute-premium")]
+    [HttpPost("actions/compute-premium", Name = "Compute Premium")]
+    [SwaggerOperation(Summary = "Compute Premium for given parameters")]
     public async Task<ActionResult> ComputePremiumAsync(DateOnly startDate, DateOnly endDate, CoverType coverType)
     {
         var computePremium = _rateService.ComputePremium(startDate, endDate, coverType);
@@ -69,7 +71,8 @@ public class CoversController : ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPost(Name = "AddCover")]
+    [SwaggerOperation(Summary = "Create new cover")]
     public async Task<ActionResult> CreateAsync(AddCoverDto cover, CancellationToken cancellationToken = default)
     {
         var addCoverCommand = new AddCoverCommand(cover.Type, cover.StartDate, cover.EndDate);
@@ -77,7 +80,8 @@ public class CoversController : ControllerBase
         return Ok(addCoverResult.Cover);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}", Name = "RemoveCover")]
+    [SwaggerOperation(Summary = "Remove cover")]
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var command = new RemoveCoverCommand(id);
