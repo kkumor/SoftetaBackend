@@ -247,7 +247,10 @@ var assemblies = [
       { "name": "Claims.Application.Covers.GetCoversQuery", "rp": "Claims_GetCoversQuery.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Covers.GetCoversQueryHandler", "rp": "Claims_GetCoversQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Covers.GetCoversQueryResult", "rp": "Claims_GetCoversQueryResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Covers.RateService", "rp": "Claims_RateService.html", "cl": 14, "ucl": 28, "cal": 42, "tl": 58, "cb": 5, "tb": 22, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Covers.Rates.GenericRateModificator", "rp": "Claims_GenericRateModificator.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 14, "cb": 6, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Covers.Rates.RateModificatorFactory", "rp": "Claims_RateModificatorFactory.html", "cl": 17, "ucl": 0, "cal": 17, "tl": 27, "cb": 8, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Covers.Rates.RateService", "rp": "Claims_RateService.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 23, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Covers.Rates.YachtRateModificator", "rp": "Claims_YachtRateModificator.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 14, "cb": 6, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Covers.RemoveCoverCommand", "rp": "Claims_RemoveCoverCommand.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Covers.RemoveCoverCommandHandler", "rp": "Claims_RemoveCoverCommandHandler.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Covers.RemoveCoverCommandResult", "rp": "Claims_RemoveCoverCommandResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -260,7 +263,7 @@ var assemblies = [
       { "name": "Claims.Model.AuditContext", "rp": "Claims_AuditContext.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Model.Claim", "rp": "Claims_Claim.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Model.Cover", "rp": "Claims_Cover.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Program", "rp": "Claims_Program.html", "cl": 74, "ucl": 1, "cal": 75, "tl": 117, "cb": 20, "tb": 20, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "Claims_Program.html", "cl": 74, "ucl": 1, "cal": 75, "tl": 118, "cb": 20, "tb": 20, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 

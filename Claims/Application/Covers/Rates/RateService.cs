@@ -9,9 +9,13 @@ public class RateService : IRateService
 
     public decimal ComputePremium(DateOnly startDate, DateOnly endDate, CoverType coverType)
     {
+        var insuranceLength = endDate.DayNumber - startDate.DayNumber;
+        if (insuranceLength <= 0)
+            return 0m;
+
         var rateModificator = RateModificatorFactory.GetRateModificator(coverType);
         var premiumPerDay = BaseRate * rateModificator.Multiplier;
-        var insuranceLength = endDate.DayNumber - startDate.DayNumber;
+
         return Enumerable.Range(0, insuranceLength)
             .Select(insuranceDay => premiumPerDay - rateModificator.GetDiscount(insuranceDay))
             .Sum();
