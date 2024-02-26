@@ -1,4 +1,4 @@
-﻿using Claims.Auditing;
+﻿using Claims.Application.Auditing;
 
 namespace Claims.Application.Services;
 

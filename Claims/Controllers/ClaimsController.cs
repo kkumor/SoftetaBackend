@@ -1,7 +1,6 @@
 using Claims.Application.Claims;
 using Claims.Application.Services;
 using Claims.Application.Shared;
-using Claims.Auditing;
 using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;

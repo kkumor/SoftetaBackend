@@ -1,6 +1,6 @@
-﻿using Claims.Application.Services;
+﻿using Claims.Application.Auditing;
+using Claims.Application.Services;
 using Claims.Application.Shared;
-using Claims.Auditing;
 using Claims.Model;
 using JetBrains.Annotations;
 
