@@ -21,6 +21,7 @@ public class CoversService(Container container) : ICoversService
 
     public Task DeleteCoverAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var containerId = id.ToString("D");
+        return container.DeleteItemAsync<Cover>(containerId, new PartitionKey(containerId), null, cancellationToken);
     }
 }

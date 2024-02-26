@@ -17,7 +17,7 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
                 AuditClaim(message.Id, message.RequestType);
                 break;
             case AuditTypes.Cover:
-                logger.LogError($"Invalid AuditMessage received: {message}");
+                AuditCover(message.Id, message.RequestType);
                 break;
             default:
                 logger.LogError($"Invalid AuditMessage received: {message}");
@@ -39,6 +39,21 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
         };
 
         auditContext.Add(claimAudit);
+        auditContext.SaveChanges();
+    }
+
+    public void AuditCover(Guid id, AuditHttpRequestType httpRequestType)
+    {
+        using var service = serviceScopeFactory.CreateScope();
+        var auditContext = service.ServiceProvider.GetRequiredService<AuditContext>();
+        var coverAudit = new CoverAudit
+        {
+            Created = DateTime.Now,
+            HttpRequestType = httpRequestType.ToString(),
+            CoverId = id.ToString("D")
+        };
+
+        auditContext.Add(coverAudit);
         auditContext.SaveChanges();
     }
 }

@@ -14,16 +14,19 @@ namespace Claims.Controllers;
 public class CoversController : ControllerBase
 {
     private readonly ICommandHandler<AddCoverCommand, AddCoverCommandResult> _addCoverCommandHandler;
+    private readonly ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> _removeCoverCommandHandler;
     private readonly IRateService _rateService;
     private readonly Auditer _auditer;
     private readonly Container _container;
 
     public CoversController(
         ICommandHandler<AddCoverCommand, AddCoverCommandResult> addCoverCommandHandler,
+        ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> removeCoverCommandHandler,
         IRateService rateService,
         CosmosClient cosmosClient, Auditer auditer)
     {
         _addCoverCommandHandler = addCoverCommandHandler;
+        _removeCoverCommandHandler = removeCoverCommandHandler;
         _rateService = rateService;
         _auditer = auditer;
         _container = cosmosClient.GetContainer("ClaimDb", "Cover") ??
@@ -75,9 +78,9 @@ public class CoversController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public Task DeleteAsync(string id)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        _auditer.AuditCover(new Guid(id), "DELETE");
-        return _container.DeleteItemAsync<Cover>(id, new(id));
+        var command = new RemoveCoverCommand(id);
+        await _removeCoverCommandHandler.Handle(command, cancellationToken);
     }
 }
