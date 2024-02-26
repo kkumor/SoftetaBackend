@@ -10,7 +10,6 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
     public Task Consume(ConsumeContext<AuditMessage> context)
     {
         var message = context.Message;
-        Console.WriteLine("Received: " + message);
         switch (message.Type)
         {
             case AuditTypes.Claim:
