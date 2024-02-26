@@ -1,7 +1,6 @@
 ﻿using Claims.Controllers.Model;
 using Claims.Model;
 using FluentAssertions;
-using Xunit;
 
 namespace Claims.Tests.Controllers;
 
