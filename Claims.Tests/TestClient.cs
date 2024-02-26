@@ -36,4 +36,34 @@ public class TestClient(HttpClient httpClient)
         var response = await httpClient.DeleteAsync($"/Claims/{id}");
         response.EnsureSuccessStatusCode();
     }
+
+    public async Task<IEnumerable<Cover>?> GetCovers()
+    {
+        var response = await httpClient.GetAsync("/Covers");
+        response.EnsureSuccessStatusCode();
+        var responseObject = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<Cover[]>(responseObject);
+    }
+
+    public async Task<Cover?> GetCover(string id)
+    {
+        var response = await httpClient.GetAsync($"/Covers/{id}");
+        response.EnsureSuccessStatusCode();
+        var responseObject = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<Cover>(responseObject);
+    }
+
+    public async Task<Cover?> CreateCover(AddCoverDto dto)
+    {
+        var response = await httpClient.PostAsJsonAsync("/Covers", dto);
+        response.EnsureSuccessStatusCode();
+        var responseObject = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<Cover>(responseObject);
+    }
+
+    public async Task DeleteCover(string id)
+    {
+        var response = await httpClient.DeleteAsync($"/Covers/{id}");
+        response.EnsureSuccessStatusCode();
+    }
 }
