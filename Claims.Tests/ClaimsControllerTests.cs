@@ -1,9 +1,6 @@
 ﻿using Claims.Controllers.Model;
 using Claims.Model;
 using FluentAssertions;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 using Xunit;
 
 namespace Claims.Tests;

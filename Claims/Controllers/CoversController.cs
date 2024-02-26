@@ -1,11 +1,9 @@
-using Claims.Application.Auditing;
 using Claims.Application.Covers;
 using Claims.Application.Services;
 using Claims.Application.Shared;
 using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Cosmos;
 using Swashbuckle.AspNetCore.Annotations;
 using GetCoversQuery = Claims.Application.Covers.GetCoversQuery;
 
