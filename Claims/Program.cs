@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Claims.Api.Controllers.Validators;
 using Claims.Application.Auditing;
 using Claims.Application.Covers.Rates;
 using Claims.Application.Services;
@@ -9,7 +10,6 @@ using Claims.Model;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -94,6 +94,11 @@ void RegisterHandlers(IServiceCollection services)
                 {
                     services.AddScoped(i, type);
                 }
+
+                if (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IValidator<>))
+                {
+                    services.AddScoped(i, type);
+                }
             }
         }
     }
@@ -117,6 +122,9 @@ static async Task RegisterCosmosServices(IConfigurationSection configurationSect
     await database.Database.CreateContainerIfNotExistsAsync(coversContainer, "/id");
 }
 
-public partial class Program
+namespace Claims
 {
+    public partial class Program
+    {
+    }
 }

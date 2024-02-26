@@ -1,12 +1,12 @@
 ﻿using Claims.Model;
 using Newtonsoft.Json;
 
-namespace Claims.Controllers.Model;
+namespace Claims.Api.Controllers.Model;
 
 public class AddClaimDto
 {
     [JsonProperty(PropertyName = "coverId")]
-    public required string CoverId { get; set; }
+    public required Guid CoverId { get; set; }
 
     [JsonProperty(PropertyName = "name")] public required string Name { get; set; }
 
@@ -15,4 +15,7 @@ public class AddClaimDto
 
     [JsonProperty(PropertyName = "damageCost")]
     public decimal DamageCost { get; set; }
+
+    [JsonProperty(PropertyName = "created")]
+    public DateTime Created { get; set; }
 }

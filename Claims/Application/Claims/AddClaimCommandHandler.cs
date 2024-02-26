@@ -18,10 +18,10 @@ public class AddClaimCommandHandler(IClaimsService claimsService, IAuditerServic
         {
             Id = claimId.ToString("D"),
             Name = command.Name,
-            CoverId = command.CoverId,
+            CoverId = command.CoverId.ToString("D"),
             Type = command.Type,
             DamageCost = command.DamageCost,
-            Created = DateTime.UtcNow
+            Created = command.Created
         };
         await claimsService.AddClaimAsync(claim, cancellationToken);
         await auditer.Audit(AuditTypes.Claim, claimId, AuditHttpRequestType.POST);
@@ -29,6 +29,7 @@ public class AddClaimCommandHandler(IClaimsService claimsService, IAuditerServic
     }
 }
 
-public record AddClaimCommand(string Name, string CoverId, decimal DamageCost, ClaimType Type) : ICommand;
+public record AddClaimCommand(string Name, Guid CoverId, decimal DamageCost, ClaimType Type, DateTime Created)
+    : ICommand;
 
 public record AddClaimCommandResult(Claim Claim) : ICommandResult;

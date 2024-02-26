@@ -1,4 +1,4 @@
-﻿using Claims.Controllers.Model;
+﻿using Claims.Api.Controllers.Model;
 using Claims.Model;
 using FluentAssertions;
 
@@ -6,7 +6,8 @@ namespace Claims.Tests.Controllers;
 
 public class ClaimsControllerTests
 {
-    private readonly TestClient _sut = TestClientBuilder.CreateTestClient();
+    private static readonly TestClient _sut = TestClientBuilder.CreateTestClient();
+    private Cover _testCover = CreateTestCover();
 
     [Fact]
     public async Task ShouldBeAbleToCreateNewClaim()
@@ -14,9 +15,10 @@ public class ClaimsControllerTests
         var addClaim = new AddClaimDto
         {
             Name = "Test",
-            CoverId = "1",
+            CoverId = new Guid(_testCover.Id),
             DamageCost = 2,
-            Type = ClaimType.Grounding
+            Type = ClaimType.Grounding,
+            Created = DateTime.UtcNow
         };
 
         var createdClaim = await _sut.CreateClaim(addClaim);
@@ -33,9 +35,10 @@ public class ClaimsControllerTests
         var addClaim = new AddClaimDto
         {
             Name = "Test",
-            CoverId = "2",
+            CoverId = new Guid(_testCover.Id),
             DamageCost = 3,
-            Type = ClaimType.BadWeather
+            Type = ClaimType.BadWeather,
+            Created = DateTime.UtcNow
         };
 
         var createdClaim = await _sut.CreateClaim(addClaim);
@@ -52,9 +55,10 @@ public class ClaimsControllerTests
         var addClaim = new AddClaimDto
         {
             Name = "Test",
-            CoverId = "3",
+            CoverId = new Guid(_testCover.Id),
             DamageCost = 4,
-            Type = ClaimType.Fire
+            Type = ClaimType.Fire,
+            Created = DateTime.UtcNow
         };
 
         var createdClaim = await _sut.CreateClaim(addClaim);
@@ -64,5 +68,17 @@ public class ClaimsControllerTests
         var claims = await _sut.GetClaims();
         claims.Should().NotBeNull();
         claims.Should().NotContainEquivalentOf(createdClaim);
+    }
+
+    private static Cover? CreateTestCover()
+    {
+        var addCover = new AddCoverDto
+        {
+            StartDate = DateOnly.FromDateTime(DateTime.Today),
+            EndDate = DateOnly.FromDateTime(DateTime.Today.AddDays(10)),
+            Type = CoverType.ContainerShip
+        };
+
+        return _sut.CreateCover(addCover).GetAwaiter().GetResult()!;
     }
 }

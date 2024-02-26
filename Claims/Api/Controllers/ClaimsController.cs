@@ -1,6 +1,7 @@
+using Claims.Api.Controllers.Model;
+using Claims.Api.Controllers.Validators;
 using Claims.Application.Claims;
 using Claims.Application.Shared;
-using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -14,17 +15,20 @@ namespace Claims.Api.Controllers
         private readonly IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> _getClaimsHandler;
         private readonly IQueryHandler<GetClaimQuery, GetClaimQueryResult> _getClaimHandler;
         private readonly ICommandHandler<AddClaimCommand, AddClaimCommandResult> _addClaimHandler;
+        private readonly IValidator<AddClaimDto> _addClaimValidator;
         private readonly ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> _removeClaimHandler;
 
         public ClaimsController(
             IQueryHandler<GetClaimsQuery, GetClaimsQueryResult> getClaimsHandler,
             IQueryHandler<GetClaimQuery, GetClaimQueryResult> getClaimHandler,
             ICommandHandler<AddClaimCommand, AddClaimCommandResult> addClaimHandler,
+            IValidator<AddClaimDto> addClaimValidator,
             ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult> removeClaimHandler)
         {
             _getClaimsHandler = getClaimsHandler;
             _getClaimHandler = getClaimHandler;
             _addClaimHandler = addClaimHandler;
+            _addClaimValidator = addClaimValidator;
             _removeClaimHandler = removeClaimHandler;
         }
 
@@ -49,7 +53,13 @@ namespace Claims.Api.Controllers
         [SwaggerOperation(Summary = "Create new claim")]
         public async Task<ActionResult> CreateAsync(AddClaimDto claim, CancellationToken cancellationToken = default)
         {
-            var command = new AddClaimCommand(claim.Name, claim.CoverId, claim.DamageCost, claim.Type);
+            var validatorResult = await _addClaimValidator.Validate(claim);
+            if (!validatorResult.IsValid)
+            {
+                return BadRequest(validatorResult.Errors);
+            }
+
+            var command = new AddClaimCommand(claim.Name, claim.CoverId, claim.DamageCost, claim.Type, claim.Created);
             var commandResult = await _addClaimHandler.Handle(command, cancellationToken);
             return Ok(commandResult.Claim);
         }

@@ -1,7 +1,7 @@
 ﻿using Claims.Model;
 using Newtonsoft.Json;
 
-namespace Claims.Controllers.Model;
+namespace Claims.Api.Controllers.Model;
 
 public class AddCoverDto
 {

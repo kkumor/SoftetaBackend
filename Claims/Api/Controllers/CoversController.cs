@@ -1,7 +1,8 @@
+using Claims.Api.Controllers.Model;
+using Claims.Api.Controllers.Validators;
 using Claims.Application.Covers;
 using Claims.Application.Services;
 using Claims.Application.Shared;
-using Claims.Controllers.Model;
 using Claims.Model;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,6 +17,7 @@ public class CoversController : ControllerBase
     private readonly IQueryHandler<GetCoversQuery, GetCoversQueryResult> _getCoversHandler;
     private readonly IQueryHandler<GetCoverQuery, GetCoverQueryResult> _getCoverHandler;
     private readonly ICommandHandler<AddCoverCommand, AddCoverCommandResult> _addCoverCommandHandler;
+    private readonly IValidator<AddCoverDto> _addCoverValidator;
     private readonly ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> _removeCoverCommandHandler;
     private readonly IRateService _rateService;
 
@@ -23,12 +25,14 @@ public class CoversController : ControllerBase
         IQueryHandler<GetCoversQuery, GetCoversQueryResult> getCoversHandler,
         IQueryHandler<GetCoverQuery, GetCoverQueryResult> getCoverHandler,
         ICommandHandler<AddCoverCommand, AddCoverCommandResult> addCoverCommandHandler,
+        IValidator<AddCoverDto> addCoverValidator,
         ICommandHandler<RemoveCoverCommand, RemoveCoverCommandResult> removeCoverCommandHandler,
         IRateService rateService)
     {
         _getCoversHandler = getCoversHandler;
         _getCoverHandler = getCoverHandler;
         _addCoverCommandHandler = addCoverCommandHandler;
+        _addCoverValidator = addCoverValidator;
         _removeCoverCommandHandler = removeCoverCommandHandler;
         _rateService = rateService;
     }
@@ -62,6 +66,12 @@ public class CoversController : ControllerBase
     [SwaggerOperation(Summary = "Create new cover")]
     public async Task<ActionResult> CreateAsync(AddCoverDto cover, CancellationToken cancellationToken = default)
     {
+        var validatorResult = await _addCoverValidator.Validate(cover);
+        if (!validatorResult.IsValid)
+        {
+            return BadRequest(validatorResult.Errors);
+        }
+
         var addCoverCommand = new AddCoverCommand(cover.Type, cover.StartDate, cover.EndDate);
         var addCoverResult = await _addCoverCommandHandler.Handle(addCoverCommand, cancellationToken);
         return Ok(addCoverResult.Cover);

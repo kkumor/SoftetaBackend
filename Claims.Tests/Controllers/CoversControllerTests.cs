@@ -1,4 +1,4 @@
-﻿using Claims.Controllers.Model;
+﻿using Claims.Api.Controllers.Model;
 using Claims.Model;
 using FluentAssertions;
 
