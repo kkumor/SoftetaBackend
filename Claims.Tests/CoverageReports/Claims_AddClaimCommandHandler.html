@@ -100,7 +100,7 @@
 <table class="overview table-fixed">
 <thead><tr><th>Method</th><th>Branch coverage <a href="https://en.wikipedia.org/wiki/Code_coverage" target="_blank"><i class="icon-info-circled"></i></a></th><th>Cyclomatic complexity <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank"><i class="icon-info-circled"></i></a></th><th>Line coverage <a href="https://en.wikipedia.org/wiki/Code_coverage" target="_blank"><i class="icon-info-circled"></i></a></th></tr></thead>
 <tbody>
-<tr><td title=".ctor(Claims.Application.Services.IClaimsService,Claims.Auditing.IAuditer)"><a href="#file0_line10" class="navigatetohash">.ctor(...)</a></td><td>100%</td><td>1</td><td>100%</td></tr>
+<tr><td title=".ctor(Claims.Application.Services.IClaimsService,Claims.Application.Services.IAuditerService)"><a href="#file0_line10" class="navigatetohash">.ctor(...)</a></td><td>100%</td><td>1</td><td>100%</td></tr>
 <tr><td title="Handle()"><a href="#file0_line15" class="navigatetohash">Handle()</a></td><td>100%</td><td>1</td><td>100%</td></tr>
 </tbody>
 </table>
@@ -111,16 +111,16 @@
 <table class="lineAnalysis">
 <thead><tr><th></th><th>#</th><th>Line</th><th></th><th>Line coverage</th></tr></thead>
 <tbody>
-<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line1"></a><code>1</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Application.Services;</code></td></tr>
-<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line2"></a><code>2</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Application.Shared;</code></td></tr>
-<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line3"></a><code>3</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Auditing;</code></td></tr>
+<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line1"></a><code>1</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Application.Auditing;</code></td></tr>
+<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line2"></a><code>2</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Application.Services;</code></td></tr>
+<tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line3"></a><code>3</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Application.Shared;</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line4"></a><code>4</code></td><td></td><td class="lightgray"><code>using&nbsp;Claims.Model;</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line5"></a><code>5</code></td><td></td><td class="lightgray"><code>using&nbsp;JetBrains.Annotations;</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line6"></a><code>6</code></td><td></td><td class="lightgray"><code></code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line7"></a><code>7</code></td><td></td><td class="lightgray"><code>namespace&nbsp;Claims.Application.Claims;</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line8"></a><code>8</code></td><td></td><td class="lightgray"><code></code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line9"></a><code>9</code></td><td></td><td class="lightgray"><code>[UsedImplicitly]</code></td></tr>
-<tr class="coverableline" title="Covered (7 visits)" data-coverage="{'AllTestMethods': {'VC': '7', 'LVS': 'green'}}"><td class="green">&nbsp;</td><td class="leftmargin rightmargin right">7</td><td class="rightmargin right"><a id="file0_line10"></a><code>10</code></td><td></td><td class="lightgreen"><code>public&nbsp;class&nbsp;AddClaimCommandHandler(IClaimsService&nbsp;claimsService,&nbsp;IAuditer&nbsp;auditer)</code></td></tr>
+<tr class="coverableline" title="Covered (7 visits)" data-coverage="{'AllTestMethods': {'VC': '7', 'LVS': 'green'}}"><td class="green">&nbsp;</td><td class="leftmargin rightmargin right">7</td><td class="rightmargin right"><a id="file0_line10"></a><code>10</code></td><td></td><td class="lightgreen"><code>public&nbsp;class&nbsp;AddClaimCommandHandler(IClaimsService&nbsp;claimsService,&nbsp;IAuditerService&nbsp;auditer)</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line11"></a><code>11</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ICommandHandler&lt;AddClaimCommand,&nbsp;AddClaimCommandResult&gt;</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line12"></a><code>12</code></td><td></td><td class="lightgray"><code>{</code></td></tr>
 <tr class="" title="Not coverable" data-coverage="{'AllTestMethods': {'VC': '', 'LVS': 'gray'}}"><td class="gray">&nbsp;</td><td class="leftmargin rightmargin right"></td><td class="rightmargin right"><a id="file0_line13"></a><code>13</code></td><td></td><td class="lightgray"><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;async&nbsp;Task&lt;AddClaimCommandResult&gt;&nbsp;Handle(AddClaimCommand&nbsp;command,</code></td></tr>
@@ -148,11 +148,11 @@
 </tbody>
 </table>
 </div>
-<div class="footer">Generated by: ReportGenerator 5.2.0.0<br />26/02/2024 - 01:07:52<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
+<div class="footer">Generated by: ReportGenerator 5.2.0.0<br />26/02/2024 - 16:57:21<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="https://reportgenerator.io">reportgenerator.io</a></div></div>
 <div class="containerright">
 <div class="containerrightfixed">
 <h1>Methods/Properties</h1>
-<a href="#file0_line10" class="navigatetohash percentagebar percentagebar100" title="Line coverage: 100% - .ctor(Claims.Application.Services.IClaimsService,Claims.Auditing.IAuditer)"><i class="icon-cube"></i>.ctor(Claims.Application.Services.IClaimsService,Claims.Auditing.IAuditer)</a><br />
+<a href="#file0_line10" class="navigatetohash percentagebar percentagebar100" title="Line coverage: 100% - .ctor(Claims.Application.Services.IClaimsService,Claims.Application.Services.IAuditerService)"><i class="icon-cube"></i>.ctor(Claims.Application.Services.IClaimsService,Claims.Application.Services.IAuditerService)</a><br />
 <a href="#file0_line15" class="navigatetohash percentagebar percentagebar100" title="Line coverage: 100% - Handle()"><i class="icon-cube"></i>Handle()</a><br />
 <br/></div>
 </div></div>

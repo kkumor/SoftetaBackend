@@ -12,7 +12,7 @@ foreach ($dir in $directories) {
     $xmlFiles = Get-ChildItem $dir.FullName -Filter "coverage.cobertura.xml";
     if ($xmlFiles) {
         Set-Location -Path $dir.FullName;
-        reportgenerator -reports:'**/coverage.cobertura.xml' -targetdir:'../../CoverageReports' -reporttypes:'Html';
+        reportgenerator -reports:'**/coverage.cobertura.xml' -targetdir:'../../CoverageReports' -reporttypes:'Html' -filefilters:-**\Migrations*;
         Set-Location -Path "../";
     }
 }
