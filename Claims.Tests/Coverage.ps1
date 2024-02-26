@@ -3,7 +3,7 @@ Remove-Item TestResults\* -Recurse -Force
 dotnet tool install -g coverlet.console;
 dotnet tool install -g dotnet-reportgenerator-globaltool;
 
-dotnet test --collect:"XPlat Code Coverage"
+dotnet test --collect:"XPlat Code Coverage" /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover
 
 $initialDirectory = Get-Location;
 $testResultsDir = "TestResults";

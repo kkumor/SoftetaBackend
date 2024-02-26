@@ -221,35 +221,37 @@ var assemblies = [
   {
     "name": "Claims",
     "classes": [
-      { "name": "Claims.Application.Claims.AddClaimCommand", "rp": "Claims_AddClaimCommand.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 35, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Claims.AddClaimCommandHandler", "rp": "Claims_AddClaimCommandHandler.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 35, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Claims.AddClaimCommandResult", "rp": "Claims_AddClaimCommandResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 35, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.AddClaimCommand", "rp": "Claims_AddClaimCommand.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.AddClaimCommandHandler", "rp": "Claims_AddClaimCommandHandler.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.AddClaimCommandResult", "rp": "Claims_AddClaimCommandResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.GetClaimQuery", "rp": "Claims_GetClaimQuery.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Claims.GetClaimQueryHandler", "rp": "Claims_GetClaimQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.GetClaimQueryHandler", "rp": "Claims_GetClaimQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.GetClaimQueryResult", "rp": "Claims_GetClaimQueryResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.GetClaimsQuery", "rp": "Claims_GetClaimsQuery.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Claims.GetClaimsQueryHandler", "rp": "Claims_GetClaimsQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.GetClaimsQueryHandler", "rp": "Claims_GetClaimsQueryHandler.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.GetClaimsQueryResult", "rp": "Claims_GetClaimsQueryResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.RemoveClaimCommand", "rp": "Claims_RemoveClaimCommand.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Application.Claims.RemoveClaimCommandHandler", "rp": "Claims_RemoveClaimCommandHandler.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 23, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Application.Claims.RemoveClaimCommandHandler", "rp": "Claims_RemoveClaimCommandHandler.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Application.Claims.RemoveClaimCommandResult", "rp": "Claims_RemoveClaimCommandResult.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Auditing.AuditConsumer", "rp": "Claims_AuditConsumer.html", "cl": 21, "ucl": 4, "cal": 25, "tl": 44, "cb": 2, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Auditing.AuditContext", "rp": "Claims_AuditContext.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Auditing.Auditer", "rp": "Claims_Auditer.html", "cl": 14, "ucl": 10, "cal": 24, "tl": 38, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Auditing.Auditer", "rp": "Claims_Auditer.html", "cl": 2, "ucl": 10, "cal": 12, "tl": 22, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Auditing.AuditMessage", "rp": "Claims_AuditMessage.html", "cl": 1, "ucl": 0, "cal": 1, "tl": 44, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Auditing.ClaimAudit", "rp": "Claims_ClaimAudit.html", "cl": 3, "ucl": 1, "cal": 4, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Auditing.CoverAudit", "rp": "Claims_CoverAudit.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Controllers.ClaimsController", "rp": "Claims_ClaimsController.html", "cl": 29, "ucl": 0, "cal": 29, "tl": 67, "cb": 8, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Controllers.CoversController", "rp": "Claims_CoversController.html", "cl": 0, "ucl": 82, "cal": 82, "tl": 128, "cb": 0, "tb": 34, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Controllers.ClaimsController", "rp": "Claims_ClaimsController.html", "cl": 29, "ucl": 0, "cal": 29, "tl": 67, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Controllers.CoversController", "rp": "Claims_CoversController.html", "cl": 0, "ucl": 82, "cal": 82, "tl": 129, "cb": 0, "tb": 26, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Controllers.Model.AddClaimDto", "rp": "Claims_AddClaimDto.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 18, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Cover", "rp": "Claims_Cover.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 30, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Infrastructure.ClaimsService", "rp": "Claims_ClaimsService.html", "cl": 24, "ucl": 3, "cal": 27, "tl": 48, "cb": 8, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Migrations._1stMigration", "rp": "Claims__1stMigration.html", "cl": 0, "ucl": 65, "cal": 65, "tl": 105, "cb": 0, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Claims.Migrations.AuditContextModelSnapshot", "rp": "Claims_AuditContextModelSnapshot.html", "cl": 0, "ucl": 52, "cal": 52, "tl": 75, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Infrastructure.ClaimsService", "rp": "Claims_ClaimsService.html", "cl": 24, "ucl": 3, "cal": 27, "tl": 48, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Migrations._1stMigration", "rp": "Claims__1stMigration.html", "cl": 0, "ucl": 65, "cal": 65, "tl": 105, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Migrations.AuditContextModelSnapshot", "rp": "Claims_AuditContextModelSnapshot.html", "cl": 0, "ucl": 52, "cal": 52, "tl": 75, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Claims.Model.Claim", "rp": "Claims_Claim.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 25, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Program", "rp": "Claims_Program.html", "cl": 61, "ucl": 1, "cal": 62, "tl": 99, "cb": 32, "tb": 32, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Claims.Model.Cover", "rp": "Claims_Cover.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "Claims_Program.html", "cl": 73, "ucl": 1, "cal": 74, "tl": 114, "cb": 20, "tb": 20, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
-var metrics = [{ "name": "Line coverage", "abbreviation": "cov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Branch coverage", "abbreviation": "bcov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }];
+var metrics = [{ "name": "Cyclomatic complexity", "abbreviation": "cc", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" }, { "name": "Line coverage", "abbreviation": "cov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Branch coverage", "abbreviation": "bcov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }];
 
 var historicCoverageExecutionTimes = [];
 
