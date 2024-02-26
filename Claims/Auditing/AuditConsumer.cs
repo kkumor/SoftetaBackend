@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using Claims.Model;
+using MassTransit;
 
 namespace Claims.Auditing;
 

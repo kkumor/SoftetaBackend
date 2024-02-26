@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace Claims.Application.Claims;
 
 [UsedImplicitly]
-public class AddClaimCommandHandler(IClaimsService claimsService, IAuditer auditer)
+public class AddClaimCommandHandler(IClaimsService claimsService, IAuditerService auditer)
     : ICommandHandler<AddClaimCommand, AddClaimCommandResult>
 {
     public async Task<AddClaimCommandResult> Handle(AddClaimCommand command,

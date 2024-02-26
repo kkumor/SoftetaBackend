@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Claims.Application.Claims;
 
 [UsedImplicitly]
-public class RemoveClaimCommandHandler(IClaimsService claimsService, IAuditer auditer)
+public class RemoveClaimCommandHandler(IClaimsService claimsService, IAuditerService auditer)
     : ICommandHandler<RemoveClaimCommand, RemoveClaimCommandResult>
 {
     public async Task<RemoveClaimCommandResult> Handle(RemoveClaimCommand command,

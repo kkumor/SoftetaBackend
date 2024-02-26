@@ -7,6 +7,7 @@ using Claims.Application.Shared;
 using Claims.Auditing;
 using Claims.Controllers;
 using Claims.Infrastructure;
+using Claims.Model;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,7 @@ builder.Services.AddSingleton(
 builder.Services.AddDbContext<AuditContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IAuditer, Auditer>();
+builder.Services.AddScoped<IAuditerService, Auditer>();
 RegisterHandlers(builder.Services);
 RegisterMasstransit(builder.Services);
 
