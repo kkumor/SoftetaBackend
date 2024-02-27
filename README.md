@@ -1,11 +1,13 @@
 # From @Kamil Kumor
-## TODOs 
+## TODOs - possible future improvments
 - Validation could be moved into custom middleware + more error handling and introduce ProblemDetails standard,
+- Introduce view models/output dtos to avoid coupling,
+- /GET would be nicer with paging/filtering
+- HATEOS Envelope pattern
 - Code does not cover leap years,
 - Rate service does not cover periods over 365 days,
 - Program.cs could be organized,
 - I dont like `string Id` in db model,
-- Models coupling,
 - Test against test cointaners instead of dev env,
 - ++
 
