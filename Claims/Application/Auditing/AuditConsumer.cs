@@ -8,26 +8,24 @@ public record AuditMessage(AuditTypes Type, Guid Id, AuditHttpRequestType Reques
 public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<AuditConsumer> logger)
     : IConsumer<AuditMessage>
 {
-    public Task Consume(ConsumeContext<AuditMessage> context)
+    public async Task Consume(ConsumeContext<AuditMessage> context)
     {
         var message = context.Message;
         switch (message.Type)
         {
             case AuditTypes.Claim:
-                AuditClaim(message.Id, message.RequestType);
-                break;
+                await AuditClaim(message.Id, message.RequestType);
+                return;
             case AuditTypes.Cover:
-                AuditCover(message.Id, message.RequestType);
-                break;
+                await AuditCover(message.Id, message.RequestType);
+                return;
             default:
                 logger.LogError($"Invalid AuditMessage received: {message}");
                 break;
         }
-
-        return Task.CompletedTask;
     }
 
-    public void AuditClaim(Guid id, AuditHttpRequestType httpRequestType)
+    public async Task AuditClaim(Guid id, AuditHttpRequestType httpRequestType)
     {
         using var service = serviceScopeFactory.CreateScope();
         var auditContext = service.ServiceProvider.GetRequiredService<AuditContext>();
@@ -39,10 +37,10 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
         };
 
         auditContext.Add(claimAudit);
-        auditContext.SaveChanges();
+        await auditContext.SaveChangesAsync();
     }
 
-    public void AuditCover(Guid id, AuditHttpRequestType httpRequestType)
+    public async Task AuditCover(Guid id, AuditHttpRequestType httpRequestType)
     {
         using var service = serviceScopeFactory.CreateScope();
         var auditContext = service.ServiceProvider.GetRequiredService<AuditContext>();
@@ -54,6 +52,6 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
         };
 
         auditContext.Add(coverAudit);
-        auditContext.SaveChanges();
+        await auditContext.SaveChangesAsync();
     }
 }
