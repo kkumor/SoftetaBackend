@@ -1,5 +1,4 @@
 using Claims.Api.Controllers.Model;
-using Claims.Api.Controllers.Validators;
 using Claims.Application.Claims;
 using Claims.Application.Shared;
 using Claims.Model;

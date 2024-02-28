@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
-using Claims.Api.Controllers.Validators;
 using Claims.Application.Auditing;
 using Claims.Application.Covers.Rates;
 using Claims.Application.Services;

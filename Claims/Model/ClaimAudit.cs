@@ -1,4 +1,4 @@
-﻿namespace Claims.Application.Auditing
+﻿namespace Claims.Model
 {
     public class ClaimAudit
     {

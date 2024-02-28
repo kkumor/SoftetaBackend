@@ -1,4 +1,6 @@
-﻿namespace Claims.Api.Controllers.Validators;
+﻿using Claims.Api.Controllers.Validators;
+
+namespace Claims.Application.Shared;
 
 public interface IValidator<in T>
 {

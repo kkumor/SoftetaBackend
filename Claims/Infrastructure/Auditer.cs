@@ -1,8 +1,9 @@
-﻿using Claims.Application.Services;
+﻿using Claims.Application.Auditing;
+using Claims.Application.Services;
 using Claims.Model;
 using MassTransit;
 
-namespace Claims.Application.Auditing;
+namespace Claims.Infrastructure;
 
 public class Auditer(AuditContext auditContext, IPublishEndpoint massTransitPublish) : IAuditerService
 {

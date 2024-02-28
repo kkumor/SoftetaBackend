@@ -1,5 +1,6 @@
 ﻿using Claims.Api.Controllers.Model;
 using Claims.Application.Services;
+using Claims.Application.Shared;
 using JetBrains.Annotations;
 
 namespace Claims.Api.Controllers.Validators;
