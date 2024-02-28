@@ -51,7 +51,7 @@ public class AddClaimDtoValidatorTests
     public async Task ValidateShouldReturnErrorWhenCreatedDateIsOutsideCoverPeriod()
     {
         // Arrange
-        var inputModel = new AddClaimDto { CoverId = Guid.NewGuid(), Created = DateTime.Now, Name = "" };
+        var inputModel = new AddClaimDto { CoverId = Guid.NewGuid(), Created = DateTime.UtcNow, Name = "" };
         var relatedCover = new Cover
         {
             StartDate = DateOnly.FromDateTime(inputModel.Created.AddDays(-2)),

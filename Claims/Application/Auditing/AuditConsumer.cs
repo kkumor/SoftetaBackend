@@ -33,7 +33,7 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
         var auditContext = service.ServiceProvider.GetRequiredService<AuditContext>();
         var claimAudit = new ClaimAudit
         {
-            Created = DateTime.Now,
+            Created = DateTime.UtcNow,
             HttpRequestType = httpRequestType.ToString(),
             ClaimId = id.ToString("D")
         };
@@ -48,7 +48,7 @@ public class AuditConsumer(IServiceScopeFactory serviceScopeFactory, ILogger<Aud
         var auditContext = service.ServiceProvider.GetRequiredService<AuditContext>();
         var coverAudit = new CoverAudit
         {
-            Created = DateTime.Now,
+            Created = DateTime.UtcNow,
             HttpRequestType = httpRequestType.ToString(),
             CoverId = id.ToString("D")
         };
